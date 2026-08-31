@@ -305,14 +305,33 @@ section{
     #14100D;
   overflow:hidden;
 }
+.story-figure img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+.story-figure::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg, rgba(14,11,9,0.05) 45%, rgba(14,11,9,0.85) 100%),
+    radial-gradient(circle at 30% 20%, rgba(198,162,93,0.10), transparent 60%);
+  z-index:1;
+}
 .story-figure .frame-tag{
   position:absolute;
   bottom:18px;
   left:18px;
+  right:18px;
   font-size:11px;
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:var(--bronze);
+  z-index:2;
 }
 .story-figure .placeholder-icon{
   width:64px;
@@ -485,6 +504,22 @@ section{
   justify-content:center;
   background:rgba(0,0,0,0.15);
   position:relative;
+  overflow:hidden;
+}
+.leather-figure img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:0;
+}
+.leather-figure::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(43,10,10,0.05) 45%, rgba(43,10,10,0.8) 100%);
+  z-index:1;
 }
 .leather-figure .placeholder-icon{
   width:70px;
@@ -496,10 +531,12 @@ section{
   position:absolute;
   bottom:16px;
   left:16px;
+  right:16px;
   font-size:11px;
   letter-spacing:0.2em;
   text-transform:uppercase;
   color:rgba(232,223,201,0.6);
+  z-index:2;
 }
 
 /* ---------- Visit / Info ---------- */
@@ -573,6 +610,82 @@ section{
   text-transform:uppercase;
   color:var(--bronze);
   margin-bottom:4px;
+}
+.map-panel{
+  margin-top:40px;
+  border:1px solid var(--line);
+  position:relative;
+  padding-bottom:34px;
+}
+.map-frame{
+  width:100%;
+  aspect-ratio:21/7;
+  overflow:hidden;
+}
+.map-frame iframe{
+  width:100%;
+  height:100%;
+  border:0;
+  display:block;
+  filter:grayscale(1) invert(92%) contrast(83%);
+}
+.map-panel .map-tag{
+  position:absolute;
+  bottom:10px;
+  left:18px;
+  right:18px;
+  font-size:11px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  color:var(--bronze);
+}
+@media (max-width:560px){
+  .map-frame{ aspect-ratio:4/3; }
+}
+
+/* ---------- WhatsApp floating button ---------- */
+.whatsapp-float{
+  position:fixed;
+  bottom:26px;
+  right:26px;
+  z-index:60;
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:#1F1B17;
+  border:1px solid var(--gold);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 22px rgba(0,0,0,0.45);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.whatsapp-float:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 30px rgba(198,162,93,0.35);
+}
+.whatsapp-float svg{
+  width:28px;
+  height:28px;
+  fill:#25D366;
+  position:relative;
+  z-index:1;
+}
+.whatsapp-float .wa-pulse{
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:1px solid rgba(37,211,102,0.35);
+  animation:waPulse 2.4s ease-out infinite;
+}
+@keyframes waPulse{
+  0%{ transform:scale(0.9); opacity:0.9; }
+  80%{ transform:scale(1.35); opacity:0; }
+  100%{ opacity:0; }
+}
+@media (max-width:560px){
+  .whatsapp-float{ bottom:18px; right:18px; width:52px; height:52px; }
+  .whatsapp-float svg{ width:25px; height:25px; }
 }
 
 /* ---------- CTA band ---------- */
@@ -742,8 +855,8 @@ footer{
 <section class="story" id="story">
   <div class="container story-grid">
     <div class="story-figure reveal">
-      <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 2c-2 3-4 5.5-4 9a4 4 0 0 0 8 0c0-3.5-2-6-4-9z"/><path d="M8 22h8"/><path d="M9 18h6"/></svg>
-      <span class="frame-tag">Image placeholder — storefront</span>
+      <img src="https://images.unsplash.com/photo-1505239034653-abfc95288b6c?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Fragrance bottles on display" loading="lazy">
+      <span class="frame-tag">Placeholder photo (Alex Rosario / Unsplash) — swap for your own storefront or product shot</span>
     </div>
     <div class="story-copy reveal">
       <span class="eyebrow">Our House</span>
@@ -820,8 +933,8 @@ footer{
       </ul>
     </div>
     <div class="leather-figure reveal">
-      <svg class="placeholder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
-      <span class="frame-tag">Image placeholder — leather goods</span>
+      <img src="https://images.unsplash.com/photo-1614179689702-355944cd0918?fm=jpg&amp;q=80&amp;w=1200&amp;auto=format&amp;fit=crop" alt="Black leather handbag with silver hardware" loading="lazy">
+      <span class="frame-tag">Placeholder photo (Laura Chouette / Unsplash) — swap for your own leather goods shot</span>
     </div>
   </div>
 </section>
@@ -841,25 +954,32 @@ footer{
       <div class="visit-panel">
         <span class="eyebrow">Hours</span>
         <h3>Opening Times</h3>
-        <div class="hours-row"><span>Saturday – Thursday</span><span>10:00 AM – 10:00 PM</span></div>
-        <div class="hours-row"><span>Friday</span><span>2:00 PM – 10:00 PM</span></div>
+        <div class="hours-row"><span>Monday – Friday</span><span>09:00 AM – 07:00 PM</span></div>
+        <div class="hours-row"><span>Saturday</span><span>09:00 AM – 04:00 PM</span></div>
+        <div class="hours-row"><span>Sunday</span><span>10:00 AM – 02:00 PM</span></div>
       </div>
       <div class="visit-panel">
         <span class="eyebrow">Contact</span>
         <h3>Find Us</h3>
         <div class="info-line">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
-          <div><span>Address</span><p>[Placeholder street address], Dubai, UAE</p></div>
+          <div><span>Address</span><p>Strand Pavilion, Beach Rd, Strand, Cape Town, 7140, Western Cape</p></div>
         </div>
         <div class="info-line">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 14l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 4 7a2 2 0 0 1 2-2z"/></svg>
-          <div><span>Phone</span><p>[Placeholder phone number]</p></div>
+          <div><span>Phone</span><p>065 844 3454</p></div>
         </div>
         <div class="info-line">
           <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/></svg>
           <div><span>Email</span><p>[Placeholder email address]</p></div>
         </div>
       </div>
+    </div>
+    <div class="map-panel reveal">
+      <div class="map-frame">
+        <iframe src="https://maps.google.com/maps?q=Strand%20Pavilion%2C%20Beach%20Rd%2C%20Strand%2C%20Cape%20Town%2C%207140&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Shop location map"></iframe>
+      </div>
+      <span class="map-tag">Strand Pavilion, Beach Rd, Strand, Cape Town — double-check the pin lines up with the exact unit once you have it</span>
     </div>
   </div>
 </section>
@@ -904,6 +1024,11 @@ footer{
     </div>
   </div>
 </footer>
+
+<a class="whatsapp-float" href="https://wa.me/27658443454?text=Hi%2C%20I%27d%20like%20to%20ask%20about%20a%20fragrance" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+  <span class="wa-pulse"></span>
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.362.687 4.564 1.872 6.415L4 29l7.79-1.834A11.94 11.94 0 0 0 16 27c6.628 0 12-5.373 12-12S22.629 3 16.001 3zm6.997 16.845c-.297.837-1.47 1.53-2.404 1.723-.638.133-1.47.239-4.27-.916-3.586-1.485-5.893-5.113-6.075-5.35-.176-.237-1.44-1.917-1.44-3.658s.905-2.598 1.226-2.953c.316-.351.688-.44.918-.44.23 0 .459.002.66.012.212.01.497-.08.777.593.297.708 1.008 2.446 1.096 2.622.088.176.147.383.03.62-.117.238-.176.383-.35.588-.176.207-.37.462-.528.62-.176.176-.36.367-.155.72.206.351.914 1.51 1.963 2.446 1.35 1.204 2.489 1.577 2.84 1.753.35.176.556.147.76-.09.207-.238.882-1.026 1.118-1.378.235-.351.47-.293.792-.176.323.117 2.05.968 2.402 1.144.35.176.586.264.674.41.088.148.088.85-.21 1.686z"/></svg>
+</a>
 
 <script>
   // Mobile nav toggle
